@@ -1,5 +1,19 @@
-#include"your_printf.h"
-int putchar_count(char c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   format_char.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moboulir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/16 19:33:48 by moboulir          #+#    #+#             */
+/*   Updated: 2025/11/16 19:33:55 by moboulir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "your_printf.h"
+#include <unistd.h>
+
+int	putchar_count(char c)
 {
-    return (int)write(1,&c,1);
+	return (write(1, &c, 1));
 }

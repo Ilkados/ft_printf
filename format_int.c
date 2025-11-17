@@ -1,50 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   format_int.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moboulir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/16 22:12:05 by moboulir          #+#    #+#             */
+/*   Updated: 2025/11/16 22:12:10 by moboulir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
+#include "your_printf.h"
 
-static void	ft_putptr(unsigned long long ptr)
+void	ft_putnbr(int n)
 {
-	if (ptr > 15)
+	if (n == -2147483648)
 	{
-		ft_putptr(ptr / 16);
-		ft_putptr(ptr % 16);
+		putstr_count("-2147483648");
+		return ;
+	}
+	if (n < 0)
+	{
+		putchar_count('-');
+		n = -n;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
 	}
 	else
-	{
-		if (ptr <= 9)
-			ft_putchar(ptr + '0');
-		else
-			ft_putchar(ptr - 10 + 'a');
-	}
+		putchar_count(n + '0');
 }
 
-static int	ft_ptrlen(unsigned long long ptr)
+static int	int_len(int n)
 {
-	int	len;
+	int		len;
+	long	nb;
 
+	nb = n;
 	len = 0;
-	if (ptr == 0)
-		return (1);
-	while (ptr != 0)
+	if (nb <= 0)
 	{
 		len++;
-		ptr = ptr / 16;
+		nb = -nb;
+	}
+	while (nb != 0)
+	{
+		len++;
+		nb /= 10;
 	}
 	return (len);
 }
 
-int	ft_printptr(unsigned long long ptr)
+int	putnbr_count(int n)
 {
-	int	len;
-
-	len = 0;
-	if (ptr == 0)
-	{
-		write(1, "(nil)", 5);
-		return (5);
-	}
-	write(1, "0x", 2);
-	len = 2;
-	ft_putptr(ptr);
-	len = len + ft_ptrlen(ptr);
-	return (len);
+	ft_putnbr(n);
+	return (int_len(n));
 }

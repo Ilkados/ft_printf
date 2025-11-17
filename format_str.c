@@ -1,13 +1,15 @@
 #include<unistd.h>
 #include<stdio.h>
+#include "your_printf.h"
+
 int putstr_count(const char *s)
 {
     int len=0;
     
     if(!s)
     {
-      write(1,"(nil)",5);
-      return 5;
+      write(1,"(null)",5);
+      return 6;
 
     }
     

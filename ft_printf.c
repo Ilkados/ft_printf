@@ -1,13 +1,13 @@
 #include"your_printf.h"
 int ft_printf(const char *restrict format, ...)
-{
+  {
     va_list args;
     va_start(args,format);
 
     size_t i=0;
 
     int count=0;
-    int k=0;
+     int k=0;
     while( format && format[i]!='\0')
     {
         if(format[i]!='%')
@@ -18,9 +18,7 @@ int ft_printf(const char *restrict format, ...)
             va_end(args);
             return -1;
           }
-          else{
             count+=k;
-          }
         }
         else{
             i++;
@@ -41,7 +39,7 @@ int ft_printf(const char *restrict format, ...)
                 continue;
             }
             else  if(format[i]=='s')
-            {
+             {
                 int k=putstr_count(va_arg(args,char *));
 
                 if(k<0)
@@ -52,8 +50,8 @@ int ft_printf(const char *restrict format, ...)
                 count+=k;
                 i++;
                 continue;
-            }
-            }
+             }
+          
             else if(format[i]=='d')
             {
                k= putnbr_count(va_arg(args,int));
@@ -70,7 +68,7 @@ int ft_printf(const char *restrict format, ...)
             }
             else  if(format[i]=='p')
             {
-                k= putptr_cout(va_arg(args,void *));
+                k= putptr_count(va_arg(args,void *));
 
                if(k<0)
                {
@@ -83,4 +81,5 @@ int ft_printf(const char *restrict format, ...)
             }
         }
         va_end(args);
-}
+   }
+  }

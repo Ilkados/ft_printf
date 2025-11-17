@@ -2,7 +2,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 
-SRCS = format_char.c format_int.c format_str.c format_ptr.c printf_entry.c
+SRCS = format_char.c format_int.c format_str.c format_ptr.c printf_entry.c put_hex_ul.c putunbr_count.c
 
 OFILES =	$(SRCS:.c=.o)
 
