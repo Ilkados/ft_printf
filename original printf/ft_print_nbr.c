@@ -10,52 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "your_printf.h"
-
-void	ft_putnbr(int n)
-{
-	if (n == -2147483648)
-	{
-		putstr_count("-2147483648");
-		return ;
-	}
-	if (n < 0)
-	{
-		putchar_count('-');
-		n = -n;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
-	else
-		putchar_count(n + '0');
-}
-
-static int	int_len(int n)
-{
-	int		len;
-	long	nb;
-
-	nb = n;
-	len = 0;
-	if (nb <= 0)
-	{
-		len++;
-		nb = -nb;
-	}
-	while (nb != 0)
-	{
-		len++;
-		nb /= 10;
-	}
-	return (len);
-}
 
 int	putnbr_count(int n)
 {
-	ft_putnbr(n);
-	return (int_len(n));
+    char    buf[11];      // up to 10 digits + safety for int
+    long    nb;
+    int     i;
+    int     len;
+
+    nb = n;              
+    i = 0;
+    len = 0;
+
+    if (nb == 0)
+        return putchar_count('0');
+
+    if (nb < 0)
+    {
+        len += putchar_count('-'); 
+        nb = -nb;                  
+    }
+
+    while (nb > 0)
+    {
+        buf[i++] = (char)('0' + (nb % 10));
+        nb /= 10;
+    }
+    while (i-- > 0)
+        len += putchar_count(buf[i]);
+
+    return len;
 }

@@ -13,12 +13,12 @@
 #include <unistd.h>
 #include <stdint.h>
 
-static int	putchar_fd(char c)
+static int	putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 
-static int	putstr_fd(const char *s)
+static int	putstr(const char *s)
 {
 	int	len;
 
@@ -42,12 +42,12 @@ static int	put_hex_ul(unsigned long n, char c)
 
 	i = 0;
 	len = 0;
-	if (c == 'x')
+	if (c == 'x' || c=='p')
 		base = "0123456789abcdef";
 	else
 		base = "0123456789ABCDEF";
 	if (n == 0)
-		return (putchar_fd('0'));
+		return (putchar('0'));
 	while (n > 0)
 	{
 		buf[i] = base[n % 16];
@@ -57,7 +57,7 @@ static int	put_hex_ul(unsigned long n, char c)
 	while (i > 0)
 	{
 		i--;
-		len += putchar_fd(buf[i]);
+		len += putchar(buf[i]);
 	}
 	return (len);
 }

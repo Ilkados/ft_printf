@@ -7,7 +7,7 @@ int put_hex_ul(unsigned long n, char c)
     int         i = 0;
     int         len = 0;
 
-    if (c == 'x'|| c =='p')
+    if (c == 'x' || c=='p')
         base = "0123456789abcdef";
     else
         base = "0123456789ABCDEF";
