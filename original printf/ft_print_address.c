@@ -10,13 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdint.h>
 
-static int	putchar(char c)
-{
-	return (write(1, &c, 1));
-}
+#include "your_printf.h"
+
 
 static int	putstr(const char *s)
 {
@@ -32,36 +28,6 @@ static int	putstr(const char *s)
 	}
 	return (len);
 }
-
-static int	put_hex_ul(unsigned long n, char c)
-{
-	char		buf[16];
-	const char	*base;
-	int			i;
-	int			len;
-
-	i = 0;
-	len = 0;
-	if (c == 'x' || c=='p')
-		base = "0123456789abcdef";
-	else
-		base = "0123456789ABCDEF";
-	if (n == 0)
-		return (putchar('0'));
-	while (n > 0)
-	{
-		buf[i] = base[n % 16];
-		i++;
-		n /= 16;
-	}
-	while (i > 0)
-	{
-		i--;
-		len += putchar(buf[i]);
-	}
-	return (len);
-}
-
 int	putptr_count(void *p)
 {
 	int	printed;

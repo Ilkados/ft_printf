@@ -19,11 +19,12 @@ int main()
 
     void *p =&a;
 
-    void *null_p = NULL:
+    void *null_p = NULL;
 
-        printf("=== %%c ===\n");
 
-    ret_ft = ft_printf("ft : [%c]\n",c);
-    ret_or = printf("or : [%c]\n",c);
-    printf("ret ft = %d, ret or  = %d\n\n",ret_ft,ret_or);
+    /* mixed test */
+    printf("=== MIXED ===\n");
+    ret_ft = ft_printf("ft : [%c] [%s] [%d] [%i] [%u] [%x] [%X] [%p] [%%%%]\n",
+                       c, s, a, b, u, a, a, p);
+
 }

@@ -6,14 +6,14 @@ int put_unsigned_count(unsigned int n)
   int buffer=0;
 
  // system calle 
-  if(n>0)
+  if(n>=10)
   {
-    tmp= pu_usigned_count(n/10);
+    tmp= put_unsigned_count(n/10);
 
     // here when we come back  from recursion:
 
     if(tmp<0)
-       return -1
+       return -1;
 
     buffer+=tmp;
   }
